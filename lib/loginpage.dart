@@ -39,66 +39,131 @@ class _LoginPageState extends State<LoginPage> {
     );
     return Scaffold(
       key: scaffKey,
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Login/Sign Up'),
-      ),
-      body: Form(
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        key: formKeySignin,
-        child: ListView(
-          children: [
-            TextFormField(
-              keyboardType: TextInputType.text,
-              validator: validate.validateUsername,
-              controller: userName,
-              decoration: InputDecoration(
-                  label: Text('Username'),
-                  hintText: 'Silahkan masukkan username'),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              keyboardType: TextInputType.text,
-              validator: validate.password,
-              obscureText: true,
-              controller: password,
-              decoration: InputDecoration(
-                  label: Text('Password'),
-                  hintText: 'Silahkan masukkan password',
-                  suffixIcon: Icon(Icons.remove_red_eye)),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                var form = formKeySignin.currentState;
-                if (form!.validate()) {
-                  /// form.save();
-                  handleSubmit();
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                }
-              },
-              child: Text(
-                'Login',
-                style: TextStyle(fontSize: 20),
+      body: Container(
+        child: Form(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          key: formKeySignin,
+          child: ListView(
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: 50),
+                color: Colors.white,
+                height: 150,
+                width: 100,
+                child: Column(
+                  children: [
+                    Text(
+                      'Hello Again!',
+                      style: TextStyle(fontSize: 50),
+                    ),
+                    Text(
+                      'Fill Your Detail Or Continue With Social Media',
+                      style: TextStyle(fontSize: 20, color: Colors.grey),
+                    )
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) {
-                    return SignUp();
-                  },
-                ));
-              },
-              child: Text(
-                'Sign Up',
-                style: TextStyle(fontSize: 20),
+              SizedBox(
+                height: 20,
               ),
-            ),
-          ],
+              TextFormField(
+                keyboardType: TextInputType.text,
+                validator: validate.validateUsername,
+                controller: userName,
+                decoration: InputDecoration(
+                    label: Text('Username'),
+                    hintText: 'Silahkan masukkan username'),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              TextFormField(
+                keyboardType: TextInputType.text,
+                validator: validate.password,
+                obscureText: true,
+                controller: password,
+                decoration: InputDecoration(
+                    label: Text('Password'),
+                    hintText: 'Silahkan masukkan password',
+                    suffixIcon: Icon(Icons.remove_red_eye)),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  var form = formKeySignin.currentState;
+                  if (form!.validate()) {
+                    /// form.save();
+                    handleSubmit();
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                },
+                child: Text(
+                  'Sign In',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(Colors.grey)),
+                onPressed: () {
+                  var form = formKeySignin.currentState;
+                  if (form!.validate()) {
+                    /// form.save();
+                    handleSubmit();
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'google.png',
+                      scale: 20,
+                    ),
+                    Text(
+                      'Sign In With Google',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              SizedBox(height: 20),
+              SizedBox(height: 20),
+              SizedBox(height: 20),
+              SizedBox(height: 20),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return SignUp();
+                    },
+                  ));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'New User? ',
+                      style: TextStyle(fontSize: 20, color: Colors.grey),
+                    ),
+                    Text(
+                      'Create Account',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
